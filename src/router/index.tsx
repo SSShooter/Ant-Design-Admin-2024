@@ -1,6 +1,3 @@
-import { Link, Outlet, createBrowserRouter } from 'react-router-dom'
-import Root from '../components/layout/Root'
-import Home from '../pages/Home'
 import {
   DesktopOutlined,
   FileOutlined,
@@ -8,8 +5,11 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
-import MyTable from '../pages/MyTable'
+import { Link, Outlet, createBrowserRouter } from 'react-router-dom'
+import Root from '../components/layout/Root'
 import ApiTest from '../pages/ApiTest'
+import Home from '../pages/Home'
+import MyTable from '../pages/MyTable'
 
 export const routes = [
   {

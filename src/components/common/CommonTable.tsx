@@ -1,6 +1,6 @@
-import type React from 'react'
-import { Space, Table, Tag } from 'antd'
+import { Button, Space, Table, Tag } from 'antd'
 import type { TableProps } from 'antd'
+import type React from 'react'
 
 interface DataType {
   key: string
@@ -15,7 +15,7 @@ const columns: TableProps<DataType>['columns'] = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <a>{text}</a>,
+    render: (text) => text,
   },
   {
     title: 'Age',
@@ -52,8 +52,8 @@ const columns: TableProps<DataType>['columns'] = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        {/* <a>Invite {record.name}</a> */}
+        <Button type="text">Delete</Button>
       </Space>
     ),
   },

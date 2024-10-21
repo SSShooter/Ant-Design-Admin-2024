@@ -7,7 +7,8 @@
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "prepare": "husky",
-    "check": "biome check"
+    "check": "biome check",
+    "fix": "biome check --fix --unsafe"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",

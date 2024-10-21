@@ -1,6 +1,6 @@
 import { Menu, type MenuProps } from 'antd'
-import { routes } from '../../router'
 import { NavLink } from 'react-router-dom'
+import { routes } from '../../router'
 
 type MenuItem = Required<MenuProps>['items'][number]
 const LeftMenu = () => {
