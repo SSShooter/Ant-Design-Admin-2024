@@ -3,8 +3,9 @@
 ## Tech stack
 
 - [React](https://react.dev/)
-- [Rspack](https://rspack.dev/)
+- [Rspack](https://rspack.dev/), for bundling
 - [Biome](https://biomejs.dev/), for linting and formatting
+- [@tanstack/react-query](https://tanstack.com/query/v5/docs/framework/react/overview), for data fetching
 
 ## How to use
 

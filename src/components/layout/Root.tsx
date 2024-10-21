@@ -1,58 +1,21 @@
-import type React from "react";
-import { useState } from "react";
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { Outlet, Router, useMatches } from "react-router-dom";
+import type { MenuProps } from 'antd'
+import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import type React from 'react'
+import { useState } from 'react'
+import { NavLink, Outlet, Router, useMatches } from 'react-router-dom'
+import LeftMenu from './LeftMenu'
 
-const { Header, Content, Footer, Sider } = Layout;
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-];
+const { Header, Content, Footer, Sider } = Layout
 
 const Root: React.FC = () => {
-  const matches = useMatches();
-  const [collapsed, setCollapsed] = useState(false);
+  const matches = useMatches()
+  const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  } = theme.useToken()
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Sider
         collapsible
         collapsed={collapsed}
@@ -61,44 +24,58 @@ const Root: React.FC = () => {
         <div
           style={{
             margin: 16,
-            color: "white",
+            color: 'white',
             fontSize: 24,
-            fontWeight: "bold",
+            fontWeight: 'bold',
           }}
         >
           SysName
         </div>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
-        />
+        <LeftMenu />
       </Sider>
       <Layout>
         {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <Content
+          style={{ margin: '0 16px', display: 'flex', flexDirection: 'column' }}
+        >
+          <Breadcrumb
+            style={{ marginTop: '16px' }}
+            items={matches.map((match) => {
+              // console.log(match)
+              const { pathname, handle } = match
+              const data = handle as { name: string; noLink?: boolean }
+              return {
+                title: data.noLink ? (
+                  data.name
+                ) : (
+                  <NavLink
+                    to={pathname}
+                    className={({ isActive, isPending }) =>
+                      isPending ? 'pending' : isActive ? 'active' : ''
+                    }
+                  >
+                    {data?.name || '--'}
+                  </NavLink>
+                ),
+              }
+            })}
+          />
           <div
             style={{
               padding: 24,
-              height: "100%",
+              margin: '16px 0',
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
+              flexGrow: 1,
+              overflow: 'auto',
             }}
           >
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
-  );
-};
+  )
+}
 
-export default Root;
+export default Root
