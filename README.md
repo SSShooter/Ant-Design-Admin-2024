@@ -6,6 +6,7 @@
 - [Rspack](https://rspack.dev/), for bundling
 - [Biome](https://biomejs.dev/), for linting and formatting
 - [@tanstack/react-query](https://tanstack.com/query/v5/docs/framework/react/overview), for data fetching
+- [husky](https://typicode.github.io/husky/get-started.html), for commit checks
 
 ## How to use
 
