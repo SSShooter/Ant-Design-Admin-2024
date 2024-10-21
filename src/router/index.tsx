@@ -1,11 +1,11 @@
 import {
   DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 import { Link, Outlet, createBrowserRouter } from 'react-router-dom'
+import Error404 from '../components/layout/Error404'
 import Root from '../components/layout/Root'
 import ApiTest from '../pages/ApiTest'
 import Home from '../pages/Home'
@@ -15,6 +15,7 @@ export const routes = [
   {
     path: '/',
     element: <Root />,
+    errorElement: <Error404 />,
     handle: {
       name: 'Root',
     },
@@ -50,7 +51,7 @@ export const routes = [
         element: <MyTable />,
         handle: {
           name: 'Table',
-          icon: <PieChartOutlined />,
+          icon: <UserOutlined />,
         },
       },
       {
@@ -58,7 +59,7 @@ export const routes = [
         element: <ApiTest />,
         handle: {
           name: 'Api',
-          icon: <PieChartOutlined />,
+          icon: <TeamOutlined />,
         },
       },
     ],

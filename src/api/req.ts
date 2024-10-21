@@ -1,7 +1,14 @@
 import axios from 'axios'
+import { router } from '../router'
 
-const requestHandleError = (e: any) => {}
 const API_ROOT = ''
+const requestHandleError = (e: any) => {
+  if (e.response.status === 401) {
+    router.navigate('/login')
+  }
+  return Promise.reject(e)
+}
+
 export const req = axios.create({
   baseURL: API_ROOT || '/',
   timeout: 20000,
