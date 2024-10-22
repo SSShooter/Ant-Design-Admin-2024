@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { router } from '../router'
+import useUserStore from '../stores/user'
 
 const API_ROOT = ''
 const requestHandleError = (e: any) => {
@@ -15,7 +16,7 @@ export const req = axios.create({
 })
 req.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = 'set token here'
+    config.headers.Authorization = useUserStore.getState().token
     return config
   },
   (error) => Promise.reject(error),
