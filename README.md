@@ -11,9 +11,11 @@
 
 ## How to use
 
-Install [Biome](https://biomejs.dev/) extension, eg: [vscode](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)
+1. Install [pnpm](https://pnpm.io/installation)
 
-Install dependencies and start the development server:
+2. Install [Biome](https://biomejs.dev/) extension, eg: [vscode](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)
+
+3. Install dependencies and start the development server:
 
 ```bash
 pnpm i
